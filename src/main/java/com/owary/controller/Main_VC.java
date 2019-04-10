@@ -21,8 +21,13 @@ public class Main_VC implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        model.loadData(listView);
+        //model.loadData(textArea, listView);
 
+    }
+
+    @FXML
+    public void onButtonPressed(){
+        model.loadData(textArea, listView);
     }
 
     public Main_VC(com.owary.model.Main_Model model) {

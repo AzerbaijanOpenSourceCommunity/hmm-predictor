@@ -8,7 +8,8 @@
 }
 
 .text-area {
-    -fx-background-color: white;
+    text-area-background: azure;
+    -fx-background-color: azure;
     -fx-fill: white;
     -fx-text-fill: black;
     -fx-highlight-text-fill: white;
@@ -29,4 +30,8 @@
 
 .label {
     -fx-background-color: aquamarine;
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background ;
 }

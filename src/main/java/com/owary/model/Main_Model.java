@@ -4,20 +4,38 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
+
 
 public class Main_Model {
 
+    private MarkovModel hmm = new MarkovModel();
     private ObservableList list = FXCollections.observableArrayList();
-    private ArrayList<String> data = new ArrayList<String>(Arrays.asList("Riyaziyyat", "Elektrik", "Mühəndislik", "Kompyuter", "Xəzər"));
 
-    public void loadData(ListView listView) {
+    public void loadData(TextArea textArea, ListView listView) {
         list.removeAll();
-        list.addAll(data);
+
+        String text = textArea.getText();
+
+        String[] lastTwo = getLastTwo(text);
+
+        List<String> arrayList = hmm.nextWord(lastTwo);
+
+        list.addAll(arrayList);
 
         listView.getItems().addAll(list);
+    }
+
+    public String[] getLastTwo(String input){
+        String[] sentences = input.split("\\.");
+        String[] split = sentences[sentences.length-1].trim().split("\\s+");
+        int length = split.length;
+        if (length >= 2){
+            return new String[]{split[length-2], split[length-1]};
+        }
+        return split;
     }
 
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
@@ -13,7 +14,7 @@
     <top>
       <HBox id="labelBox" alignment="CENTER" maxHeight="100.0" maxWidth="1280.0" minHeight="100.0" minWidth="1280.0" prefHeight="100.0" prefWidth="1280.0" stylesheets="@../../../Main_View.css" BorderPane.alignment="CENTER">
          <children>
-            <Label id="labelText" alignment="CENTER" contentDisplay="CENTER" maxHeight="100.0" maxWidth="1280.0" minHeight="100.0" minWidth="1280.0" prefHeight="100.0" prefWidth="1280.0" stylesheets="@../../../Main_View.css" text="Mətn Redaktoru" textAlignment="CENTER" textOverrun="CLIP">
+            <Label id="labelText" alignment="CENTER" contentDisplay="CENTER" maxHeight="100.0" maxWidth="1180.0" minHeight="100.0" minWidth="1180.0" prefHeight="100.0" prefWidth="1180.0" stylesheets="@../../../Main_View.css" text="Mətn Redaktoru" textAlignment="CENTER" textOverrun="CLIP">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -21,10 +22,15 @@
                   <Font name="Exo Bold" size="48.0" />
                </font>
             </Label>
+            <Button id="actionButton" fx:id="predictButton" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onButtonPressed" prefHeight="100.0" prefWidth="100.0" stylesheets="@../../../Main_View.css" text="GO!">
+               <font>
+                  <Font name="Exo Bold" size="33.0" />
+               </font>
+            </Button>
          </children></HBox>
    </top>
    <left>
-      <TextArea id="textArea" maxHeight="620.0" maxWidth="855.0" minHeight="620.0" minWidth="855.0" prefHeight="620.0" prefWidth="855.0" promptText="Mətninizi bura yazın..." stylesheets="@../../../Main_View.css" BorderPane.alignment="CENTER">
+      <TextArea id="textArea" fx:id="textArea" maxHeight="620.0" maxWidth="855.0" minHeight="620.0" minWidth="855.0" prefHeight="620.0" prefWidth="855.0" promptText="Mətninizi bura yazın..." stylesheets="@../../../Main_View.css" BorderPane.alignment="CENTER">
          <font>
             <Font name="Exo Regular" size="30.0" />
          </font></TextArea>
