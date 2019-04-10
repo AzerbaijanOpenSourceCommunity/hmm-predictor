@@ -1,5 +1,3 @@
-/* Developers: Yusif Aliyev */
-
 package com.owary.controller;
 
 import javafx.fxml.FXML;
