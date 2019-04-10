@@ -1,3 +1,5 @@
+/* Developers: Yusif Aliyev */
+
 package com.owary.model;
 
 import javafx.collections.FXCollections;

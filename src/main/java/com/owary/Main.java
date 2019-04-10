@@ -1,3 +1,5 @@
+/* Developers: Yusif Aliyev & Mensur Qulami */
+
 package com.owary;
 
 import com.owary.controller.Main_VC;
