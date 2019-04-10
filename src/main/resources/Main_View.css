@@ -4,4 +4,30 @@
     -fx-text-alignment: center;
     -fx-alignment: center;
     -fx-font-family: "Exo";
+    -fx-text-fill: white;
+}
+
+#listView {
+    -fx-background-color: green;
+}
+
+#textArea {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+}
+
+#labelBox {
+    -fx-background-color: blue;
+}
+
+#labelText {
+    -fx-text-fill: white;
+}
+
+.cell {
+    -fx-background-color: green;
+}
+
+.cell:selected {
+    -fx-background-color: red;
 }
