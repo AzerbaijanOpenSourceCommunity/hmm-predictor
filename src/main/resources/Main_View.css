@@ -7,27 +7,26 @@
     -fx-text-fill: white;
 }
 
-#listView {
-    -fx-background-color: green;
+.text-area {
+    -fx-background-color: white;
+    -fx-fill: white;
+    -fx-text-fill: black;
+    -fx-highlight-text-fill: white;
+    -fx-highlight-fill: black;
 }
 
-#textArea {
-    -fx-background-color: red;
-    -fx-text-fill: white;
-}
-
-#labelBox {
-    -fx-background-color: blue;
-}
-
-#labelText {
-    -fx-text-fill: white;
+.list-view {
+    -fx-background-color: skyblue;
 }
 
 .cell {
-    -fx-background-color: green;
+    -fx-background-color: skyblue;
 }
 
 .cell:selected {
-    -fx-background-color: red;
+    -fx-background-color: aquamarine;
+}
+
+.label {
+    -fx-background-color: aquamarine;
 }
