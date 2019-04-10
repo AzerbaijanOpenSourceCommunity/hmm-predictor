@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.owary.controller.Main_VC">
 
     <top>
-      <HBox maxHeight="100.0" maxWidth="1280.0" minHeight="100.0" minWidth="1280.0" prefHeight="100.0" prefWidth="1280.0" BorderPane.alignment="CENTER" />
+      <HBox maxHeight="100.0" maxWidth="1280.0" minHeight="100.0" minWidth="1280.0" prefHeight="100.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="100.0" maxWidth="1280.0" minHeight="100.0" minWidth="1280.0" prefHeight="100.0" prefWidth="1280.0" text="Mətn Redaktoru" textAlignment="CENTER" textOverrun="CLIP">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font name="Exo Bold" size="48.0" />
+               </font>
+            </Label>
+         </children></HBox>
    </top>
-
-   <center>
-      <TextArea id="textArea" maxHeight="520.0" maxWidth="1280.0" minHeight="520.0" minWidth="1280.0" prefHeight="520.0" prefWidth="1280.0" stylesheets="@../../../Main_View.css" BorderPane.alignment="CENTER" />
-   </center>
-   <bottom>
-      <ListView id="listView" fx:id="listView" maxHeight="100.0" maxWidth="1280.0" minHeight="100.0" minWidth="1280.0" orientation="HORIZONTAL" prefHeight="100.0" prefWidth="1280.0" stylesheets="@../../../Main_View.css" BorderPane.alignment="CENTER" />
-   </bottom>
+   <left>
+      <TextArea id="textArea" maxHeight="620.0" maxWidth="855.0" minHeight="620.0" minWidth="855.0" prefHeight="620.0" prefWidth="855.0" promptText="Mətninizi bura yazın..." stylesheets="@../../../Main_View.css" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Exo Regular" size="30.0" />
+         </font></TextArea>
+   </left>
+   <right>
+      <ListView id="listView" fx:id="listView" maxHeight="620.0" maxWidth="425.0" minHeight="620.0" minWidth="425.0" prefHeight="620.0" prefWidth="425.0" stylesheets="@../../../Main_View.css" BorderPane.alignment="CENTER" />
+   </right>
 
 </BorderPane>

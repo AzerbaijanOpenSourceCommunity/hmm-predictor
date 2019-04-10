@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class Main_Model {
 
     private ObservableList list = FXCollections.observableArrayList();
-    private ArrayList<String> data = new ArrayList<String>(Arrays.asList("One", "Two", "Three", "Four", "Five"));
+    private ArrayList<String> data = new ArrayList<String>(Arrays.asList("Riyaziyyat", "Elektrik", "Mühəndislik", "Kompyuter", "Xəzər"));
 
     public void loadData(ListView listView) {
         list.removeAll();
