@@ -1,6 +1,6 @@
 package com.owary.view;
 
-import com.owary.MarkovModel;
+import com.owary.model.MarkovModel;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.List;
 
-public class Texter implements Runnable{
+public class Texter implements Runnable {
     private JFrame jFrame;
     private JTextArea textArea1 = new JTextArea(5, 50);
     private JList<String> list1 = new JList<>();

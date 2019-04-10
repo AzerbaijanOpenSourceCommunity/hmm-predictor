@@ -1,4 +1,4 @@
-package com.owary;
+package com.owary.model;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,7 +35,7 @@ public class MarkovModel {
             word1 = provided[0].trim();
         }
 
-        Map<String, Double> stringDoubleMap = null;
+        Map<String, Double> stringDoubleMap;
 
         // the first word
         if (word1 != null && word2 == null){
@@ -54,7 +54,6 @@ public class MarkovModel {
                 stringDoubleMap = SecondPossibleWordsProbabilities.get(word2);
                 if (stringDoubleMap != null) {
                     result = getResult(stringDoubleMap);
-                    System.out.println("herrr" + result);
                 }
             }
         }
@@ -62,7 +61,7 @@ public class MarkovModel {
         return result != null ? result : new ArrayList<>();
     }
 
-    public List<String> getResult(Map<String, Double> stringDoubleMap){
+    private List<String> getResult(Map<String, Double> stringDoubleMap){
         return stringDoubleMap
                     .entrySet()
                     .stream()
@@ -73,7 +72,6 @@ public class MarkovModel {
 
     public void train() {
         try {
-
             String filename = "test_train.txt";
             String string = getString(filename);
             String clean = clean(string);
@@ -100,7 +98,7 @@ public class MarkovModel {
                 String previousToken = strings.get(i - 1);
 
                 if (i == len - 1) {
-                    addToTransition(previousToken, token, "<END>");
+                    addToTransition(previousToken, token, ". ");
                 }
 
                 if (i == 1) {
@@ -122,27 +120,21 @@ public class MarkovModel {
             FirstPossibleWordsProbabilities.put(entry.getKey(), value);
         }
 
-        FirstPossibleWords.clear();
-
         for (Map.Entry<String, List<String>> entry : SecondPossibleWords.entrySet()) {
             SecondPossibleWordsProbabilities.put(entry.getKey(), getNextProbability(entry.getValue()));
         }
-
-        SecondPossibleWords.clear();
 
         for (Map.Entry<List<String>, List<String>> entry : Transitions.entrySet()) {
             TransitionsProbabilities.put(entry.getKey(), getNextProbability(entry.getValue()));
         }
 
-        Transitions.clear();
-
     }
 
-    public Map<String, Double> getNextProbability(List<String> words){
+    private Map<String, Double> getNextProbability(List<String> words){
         Map<String, Long> wordCounts = new HashMap<>();
         for (String word : words) {
-            wordCounts.putIfAbsent(word, 0L);
             wordCounts.computeIfPresent(word, (k, v) -> v + 1);
+            wordCounts.putIfAbsent(word, 1L);
         }
 
         Map<String, Double> probs = new HashMap<>();
@@ -166,7 +158,7 @@ public class MarkovModel {
         });
     }
 
-    public void addToTransition (String key1, String key2, String value) {
+    private void addToTransition (String key1, String key2, String value) {
         List<String> key = getList(key1, key2);
         List<String> val = getList(value);
 
@@ -178,7 +170,7 @@ public class MarkovModel {
         }
     }
 
-    public List<String> getList(String...val){
+    private List<String> getList(String...val){
         return new ArrayList<>(Arrays.asList(val));
     }
 
