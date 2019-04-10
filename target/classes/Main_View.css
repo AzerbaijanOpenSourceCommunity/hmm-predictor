@@ -1,8 +1,0 @@
-.list-cell {
-    -fx-font: 30pt "Arial";
-    -fx-max-height: 100px;
-    -fx-min-height: 100px;
-    -fx-max-width: 255px;
-    -fx-min-width: 255px;
-    -fx-text-alignment: center;
-}
