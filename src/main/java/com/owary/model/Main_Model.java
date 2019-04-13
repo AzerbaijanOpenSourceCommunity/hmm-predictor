@@ -15,7 +15,10 @@ public class Main_Model {
     private ObservableList list = FXCollections.observableArrayList();
 
     public void loadData(TextArea textArea, ListView listView) {
-        list.removeAll();
+//        list.removeAll();
+        list.clear();
+
+        System.out.println(list.size());
 
         String text = textArea.getText();
 
@@ -23,9 +26,17 @@ public class Main_Model {
 
         List<String> arrayList = hmm.nextWord(lastTwo);
 
-        list.addAll(arrayList);
+//        list.addAll(arrayList);
+        listView.getItems().clear();
+        listView.getItems().addAll(getFive(arrayList));
+    }
 
-        listView.getItems().addAll(list);
+    public List<String> getFive(List<String> list){
+        int size = 5;
+        if (list.size() < 5){
+            size = list.size();
+        }
+        return list.subList(0, size);
     }
 
     public String[] getLastTwo(String input){

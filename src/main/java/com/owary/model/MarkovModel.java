@@ -1,5 +1,7 @@
 package com.owary.model;
 
+import com.owary.Main;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -57,7 +59,7 @@ public class MarkovModel {
                 }
             }
         }
-
+        
         return result != null ? result : new ArrayList<>();
     }
 
