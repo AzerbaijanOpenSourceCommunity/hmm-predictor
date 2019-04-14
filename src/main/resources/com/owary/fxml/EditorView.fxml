@@ -24,13 +24,13 @@
          </children></HBox>
    </top>
    <left>
-      <TextArea id="textArea" fx:id="textArea" maxHeight="620.0" maxWidth="855.0" minHeight="620.0" minWidth="855.0" prefHeight="620.0" prefWidth="855.0" promptText="Mətninizi bura yazın..." stylesheets="@../../../Main_View.css" BorderPane.alignment="CENTER">
+      <TextArea id="textArea" fx:id="textArea" maxHeight="620.0" maxWidth="855.0" minHeight="620.0" minWidth="855.0" prefHeight="620.0" prefWidth="855.0" promptText="Mətninizi bura yazın..." stylesheets="@../../../Main_View.css" wrapText="true" BorderPane.alignment="CENTER">
          <font>
             <Font name="Exo Regular" size="30.0" />
          </font></TextArea>
    </left>
    <right>
-      <ListView id="listView" fx:id="listView" maxHeight="620.0" maxWidth="425.0" minHeight="620.0" minWidth="425.0" prefHeight="620.0" prefWidth="425.0" stylesheets="@../../../Main_View.css" BorderPane.alignment="CENTER" />
+      <ListView id="listView" fx:id="listView" maxHeight="620.0" maxWidth="425.0" minHeight="620.0" minWidth="425.0" onMouseClicked="#onCellClicked" prefHeight="620.0" prefWidth="425.0" stylesheets="@../../../Main_View.css" BorderPane.alignment="CENTER" />
    </right>
 
 </BorderPane>

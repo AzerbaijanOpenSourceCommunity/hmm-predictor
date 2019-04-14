@@ -32,6 +32,23 @@ public class Main_VC implements Initializable {
         });
     }
 
+    @FXML
+    public void onCellClicked() {
+        String text = listView.getSelectionModel().getSelectedItem();
+
+        System.out.println(text);
+
+        if(text.equals(". ")){
+            int lastIndex = textArea.getText().lastIndexOf(' ');
+            textArea.deleteText(lastIndex, lastIndex+1);
+            textArea.setText(textArea.getText() + text);
+        }else{
+            textArea.setText(textArea.getText() + text + " ");
+        }
+
+        model.loadData(textArea, listView);
+    }
+
     public Main_VC(com.owary.model.Main_Model model) {
         this.model = model;
     }
