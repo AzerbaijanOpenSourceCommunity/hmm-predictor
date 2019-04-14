@@ -1,1 +1,1 @@
-# HMM Azeri Word Predictor for ICAMES
+## HMM Azeri Word Predictor (A project by "8-bit Magic" for ICAMES 2019)
