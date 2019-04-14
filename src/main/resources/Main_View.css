@@ -1,35 +1,37 @@
 .list-cell {
-    -fx-font: 30pt "Arial";
+    -fx-font: 30pt "Exo";
     -fx-cell-size: 123.5px;
     -fx-text-alignment: center;
     -fx-alignment: center;
-    -fx-font-family: "Exo";
-    -fx-text-fill: white;
+    -fx-text-fill: #E6F0D9;
 }
 
 .text-area {
-    text-area-background: azure;
-    -fx-background-color: azure;
-    -fx-fill: white;
-    -fx-text-fill: black;
-    -fx-highlight-text-fill: white;
-    -fx-highlight-fill: black;
+    text-area-background: #E6F0D9;
+    -fx-background-color: #E6F0D9;
+    -fx-fill: #E6F0D9;
+    -fx-text-fill: #151721;
+    -fx-highlight-text-fill: #E6F0D9;
+    -fx-highlight-fill: #151721;
 }
 
 .list-view {
-    -fx-background-color: skyblue;
+    -fx-background-color: #7A817B;
 }
 
 .cell {
-    -fx-background-color: skyblue;
+    -fx-background-color: #7A817B;
+    -fx-text-fill: #151721;
 }
 
 .cell:selected {
-    -fx-background-color: aquamarine;
+    -fx-background-color: #151721;
+    -fx-text-fill: #E6F0D9;
 }
 
 .label {
-    -fx-background-color: aquamarine;
+    -fx-background-color: #151721;
+    -fx-text-fill: #E6F0D9;
 }
 
 .text-area .content {
