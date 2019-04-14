@@ -1,8 +1,5 @@
 package com.owary.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 
@@ -12,13 +9,8 @@ import java.util.List;
 public class Main_Model {
 
     private MarkovModel hmm = new MarkovModel();
-    private ObservableList list = FXCollections.observableArrayList();
 
     public void loadData(TextArea textArea, ListView listView) {
-//        list.removeAll();
-        list.clear();
-
-        System.out.println(list.size());
 
         String text = textArea.getText();
 
@@ -26,8 +18,8 @@ public class Main_Model {
 
         List<String> arrayList = hmm.nextWord(lastTwo);
 
-//        list.addAll(arrayList);
         listView.getItems().clear();
+
         listView.getItems().addAll(getFive(arrayList));
     }
 
