@@ -1,8 +1,39 @@
 .list-cell {
-    -fx-font: 30pt "Arial";
-    -fx-max-height: 100px;
-    -fx-min-height: 100px;
-    -fx-max-width: 255px;
-    -fx-min-width: 255px;
+    -fx-font: 30pt "Exo";
+    -fx-cell-size: 123.5px;
     -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-text-fill: #E6F0D9;
+}
+
+.text-area {
+    text-area-background: #E6F0D9;
+    -fx-background-color: #E6F0D9;
+    -fx-fill: #E6F0D9;
+    -fx-text-fill: #151721;
+    -fx-highlight-text-fill: #E6F0D9;
+    -fx-highlight-fill: #151721;
+}
+
+.list-view {
+    -fx-background-color: #7A817B;
+}
+
+.cell {
+    -fx-background-color: #7A817B;
+    -fx-text-fill: #151721;
+}
+
+.cell:selected {
+    -fx-background-color: #151721;
+    -fx-text-fill: #E6F0D9;
+}
+
+.label {
+    -fx-background-color: #151721;
+    -fx-text-fill: #E6F0D9;
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background ;
 }

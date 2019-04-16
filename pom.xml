@@ -20,5 +20,19 @@
         </plugins>
     </build>
 
+    <dependencies>
+        <!--<dependency>-->
+            <!--<groupId>org.openjfx</groupId>-->
+            <!--<artifactId>javafx-controls</artifactId>-->
+            <!--<version>11-ea+19</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.openjfx</groupId>-->
+            <!--<artifactId>javafx-fxml</artifactId>-->
+            <!--<version>11-ea+19</version>-->
+        <!--</dependency>-->
+
+    </dependencies>
+
 
 </project>
