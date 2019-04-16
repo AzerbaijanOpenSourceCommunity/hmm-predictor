@@ -14,6 +14,8 @@ public class Main_Model {
 
         String text = textArea.getText();
 
+        text = text.toLowerCase();
+
         String[] lastTwo = getLastTwo(text);
 
         List<String> arrayList = hmm.nextWord(lastTwo);

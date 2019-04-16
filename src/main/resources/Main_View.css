@@ -1,5 +1,6 @@
 .list-cell {
     -fx-font: 30pt "Exo";
+    -fx-font-weight: bold;
     -fx-cell-size: 123.5px;
     -fx-text-alignment: center;
     -fx-alignment: center;
