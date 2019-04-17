@@ -22,17 +22,6 @@ public class TextParser {
         }
     }
 
-    public static List<WordPair> parse(String filename) throws IOException {
-        String string = getString(filename);
-        String clean = clean(string);
-        List<String> sentences = getSentences(clean);
-        List<WordPair> relations = getRelations(sentences);
-        relations.sort(WordPair::compareTo);
-        relations.stream().limit(25).forEach(e -> System.out.println(e.getWord() + " -> " + e.getNext() + " => "+e.getPairOccurred()+" === "+e.getOccurred()));
-        serialize(relations, filename);
-        return relations;
-    }
-
     public static List<String> getSentences(String string){
         String[] split = string.split("\\.");
         return Arrays.asList(split);
@@ -95,64 +84,6 @@ public class TextParser {
                 .collect(toList());
     }
 
-    private static List<WordPair> getRelations(List<String> sentences){
-        List<WordPair> wordsList = new ArrayList<>();
-        Map<WordPair, WordPair> lookupForPairs = new HashMap<>();
-        Map<String, Integer> lookupForWords = new HashMap<>();
-        for (String sentence : sentences) {
-            List<String> words = getWords(sentence);
-            for (int i = 0; i < words.size()-1; i++) {
-                String theWord = words.get(i);
-                String theNext = words.get(i+1);
-                WordPair word = new WordPair(theWord, theNext);
-                addToList(wordsList, word, lookupForPairs, lookupForWords);
-            }
-        }
-        for (WordPair word : wordsList) {
-            String text = word.getWord().getText();
-            Integer i = lookupForWords.get(text);
-            word.wordOccurred(i);
-        }
-        return wordsList;
-    }
-
-    private static void addToList(List<WordPair> list, WordPair word, Map<WordPair, WordPair> lookupForPairs, Map<String, Integer> lookupForWords){
-        lookupForWords.computeIfPresent(word.getWord().getText(), (k, v) -> ++v);
-        lookupForWords.putIfAbsent(word.getWord().getText(), 1);
-
-        boolean pairContained = lookupForPairs.containsKey(word);
-        if (!pairContained) {
-            list.add(word);
-            lookupForPairs.put(word, word);
-            return;
-        }
-        lookupForPairs.get(word).pairOccurred();
-    }
-
-    private static void serialize(List<WordPair> words, String filename){
-        try {
-            String outName = String.format("%s_%d", filename, System.currentTimeMillis());
-            FileOutputStream out = new FileOutputStream("src/main/resources/dumps/"+outName);
-            ObjectOutputStream oos = new ObjectOutputStream(out);
-            oos.writeObject(words);
-            oos.flush();
-        } catch (Exception e) {
-            System.out.println("Problem serializing: " + e);
-        }
-    }
-
-    public static List<WordPair> deserialize(String filename){
-        try {
-            String inName = getInName(filename);
-            FileInputStream in = new FileInputStream(inName);
-            ObjectInputStream ois = new ObjectInputStream(in);
-            return (List<WordPair>) (ois.readObject());
-        } catch (Exception e) {
-            System.out.println("Problem serializing: " + e);
-        }
-        return null;
-    }
-
     private static String getInName(String filename){
         String folder = "dumps";
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -177,17 +108,5 @@ public class TextParser {
         } catch (NumberFormatException ex) {
             return -1L;
         }
-    }
-
-    public static List<WordPair> merge(List<WordPair>...wordLists){
-        List<WordPair> finalList = new ArrayList<>();
-        Map<WordPair, WordPair> lookup = new HashMap<>();
-        Map<String, Integer> lookupForWords = new HashMap<>();
-        for (List<WordPair> words : wordLists) {
-            for (WordPair word : words) {
-                addToList(finalList, word, lookup, lookupForWords);
-            }
-        }
-        return finalList;
     }
 }
