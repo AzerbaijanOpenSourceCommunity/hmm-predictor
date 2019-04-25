@@ -339,8 +339,4 @@ public class MarkovModel implements Serializable {
     private static boolean fileExists(String file){
         return new File(file).exists();
     }
-
-    public Map<String, Long> getFirstPossibleWords() {
-        return FirstPossibleWords;
-    }
 }
