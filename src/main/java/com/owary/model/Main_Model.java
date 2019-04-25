@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Main_Model {
 
-    private MarkovModel hmm = new MarkovModel();
+    private MarkovModel hmm = MarkovModel.getTrainedModel();
 
     public void loadData(TextArea textArea, ListView listView) {
 

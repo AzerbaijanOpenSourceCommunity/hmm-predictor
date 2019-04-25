@@ -1,26 +1,50 @@
 package com.owary.model;
 
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.owary.textparser.TextParser.*;
 
-public class MarkovModel {
+public class MarkovModel implements Serializable {
 
-    private static Map<String, Long> FirstPossibleWords = new HashMap<>();
-    private static Map<String, List<String>> SecondPossibleWords = new HashMap<>();
-    private static Map<List<String>, List<String>> Transitions = new HashMap<>();
+    private static final String STRING_LOCATION = "src/main/resources/serialized.model";
 
-    private static Map<String, Double> FirstPossibleWordsProbabilities = new HashMap<>();
-    private static Map<String, Map<String, Double>> SecondPossibleWordsProbabilities = new HashMap<>();
-    private static Map<List<String>, Map<String, Double>> TransitionsProbabilities = new HashMap<>();
+    private Map<String, Long> FirstPossibleWords = new HashMap<>();
+    private Map<String, List<String>> SecondPossibleWords = new HashMap<>();
+    private Map<List<String>, List<String>> Transitions = new HashMap<>();
+
+    private Map<String, Double> FirstPossibleWordsProbabilities = new HashMap<>();
+    private Map<String, Map<String, Double>> SecondPossibleWordsProbabilities = new HashMap<>();
+    private Map<List<String>, Map<String, Double>> TransitionsProbabilities = new HashMap<>();
 
     /**
      * Model Constructor
      */
     public MarkovModel() {
-        // train on model initiation
-        train();
+
+    }
+
+    /**
+     * Returns a trained model
+     * If model already exists as a serialized file, it will load it, otherwise it will re-train the model.
+     * @return trained model instance
+     */
+    public static MarkovModel getTrainedModel(){
+        MarkovModel model = null;
+        System.out.println("Checking for serialized file...");
+        if (fileExists(STRING_LOCATION)) {
+            System.out.println("File is found...");
+            model = loadFromFile();
+        }else{
+            System.out.println("File is not found...");
+        }
+        if (model == null){
+            System.out.println("File is corrupted, training will be repeated");
+            model = getTrainedInstance();
+            System.out.println("Model has been trained...");
+        }
+        return model;
     }
 
     /**
@@ -101,10 +125,11 @@ public class MarkovModel {
     }
 
     /**
-     * training the Markov Model
+     * Training the Markov Model
      */
     public void train() {
         try {
+            System.out.println("Training started...");
             // the name of the file
             String filename = "test_train.txt";
             // get the whole string of the file
@@ -119,7 +144,9 @@ public class MarkovModel {
                 process(getWords(sentences.get(i)));
             }
 
+            System.out.println("Training ended...");
         }catch (Exception ex){
+            System.out.println("Error occurred while training");
             ex.printStackTrace();
         }
     }
@@ -254,11 +281,66 @@ public class MarkovModel {
         return new ArrayList<>(Arrays.asList(val));
     }
 
+    /**
+     * Serializes the object
+     */
+    private void serialize(){
+        try {
+            System.out.println("Saving model...");
+            FileOutputStream fileOut = new FileOutputStream(STRING_LOCATION);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(this);
+            out.close();
+            fileOut.close();
+            System.out.println("Saved in src/main/resources/serialized.model");
+        } catch (IOException i) {
+            System.out.println("Problem occurred while saving the model, cause "+i.getMessage());
+        }
+    }
 
+    /**
+     * Returns a trained instance by loading it from a file
+     * @return trained model
+     */
+    private static MarkovModel loadFromFile(){
+        MarkovModel model = null;
+        try {
+            FileInputStream fileIn = new FileInputStream(STRING_LOCATION);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            model = (MarkovModel) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        } catch (ClassNotFoundException c) {
+            System.out.println("Class not found");
+            c.printStackTrace();
+        }
+        return model;
+    }
 
+    /**
+     * Returns a trained instance by training it
+     * @return trained model
+     */
+    private static MarkovModel getTrainedInstance(){
+        // train on model initiation
+        MarkovModel model = new MarkovModel();
+        model.train();
+        model.serialize();
+        return model;
+    }
 
+    /**
+     * Checks if file exists in the filesystem
+     * @param file
+     * @return
+     */
+    private static boolean fileExists(String file){
+        return new File(file).exists();
+    }
 
-
-
-
+    public Map<String, Long> getFirstPossibleWords() {
+        return FirstPossibleWords;
+    }
 }
