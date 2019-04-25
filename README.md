@@ -2,3 +2,6 @@
 
 ### Flowchart
 ![Flowchart](./src/main/resources/images/flowchart.svg)
+
+### UML
+![UML](./src/main/resources/images/uml.svg)
