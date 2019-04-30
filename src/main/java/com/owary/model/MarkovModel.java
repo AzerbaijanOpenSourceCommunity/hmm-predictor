@@ -116,10 +116,11 @@ public class MarkovModel implements Serializable {
      * @return
      */
     private List<String> getResult(Map<String, Double> stringDoubleMap){
-        return stringDoubleMap
-                    .entrySet()
+        System.out.println("========RESULTS========");
+        return new ArrayList<>(stringDoubleMap.entrySet())
                     .stream()
-                    .sorted(Map.Entry.comparingByValue())
+                    .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue())) // reverse sorting
+                    .peek(el -> System.out.printf("%s \t: \t\t%.3f\n", el.getKey(), el.getValue()))
                     .map(Map.Entry::getKey)
                     .collect(Collectors.toList());
     }
