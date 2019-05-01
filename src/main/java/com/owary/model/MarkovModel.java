@@ -131,7 +131,7 @@ public class MarkovModel implements Serializable {
         try {
             System.out.println("Training started...");
             // the name of the file
-            String filename = "test_train.txt";
+            String filename = "train.txt";
             // get the whole string of the file
             String string = getString(filename);
             // clean the string
